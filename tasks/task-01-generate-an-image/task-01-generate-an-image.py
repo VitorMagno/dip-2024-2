@@ -1,6 +1,7 @@
+#%%
 import argparse
 import numpy as np
-import cv2
+import cv2 as cv
 
 def generate_image(seed, width, height, mean, std):
     """
@@ -17,7 +18,11 @@ def generate_image(seed, width, height, mean, std):
         image (numpy.ndarray): The generated image.
     """
     ### START CODE HERE ###
-    ### TODO
+    np.random.seed(seed)
+    random_numbers = np.random.normal(mean, std, (height, width))
+    random_numbers = np.clip(random_numbers, 0, 255)
+    image = random_numbers.astype(np.uint8)
+    
     ### END CODE HERE ###
 
     return image
@@ -39,7 +44,7 @@ def main():
     image = generate_image(args.registration_number, args.width, args.height, args.mean, args.std)
 
     # Save the generated image
-    cv2.imwrite(args.output, image)
+    cv.imwrite(args.output, image)
 
     print(f"Image successfully generated and saved to {args.output}")
 
