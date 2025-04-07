@@ -29,8 +29,6 @@ The return value should be like:
 
 import numpy as np
 
-import numpy as np
-
 def apply_geometric_transformations(img: np.ndarray) -> dict:
     H, W = img.shape
     result = {}
